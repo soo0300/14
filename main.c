@@ -1,26 +1,29 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+struct Book{
+	int number;
+	char title[10];
+
+};
+
 void main(void){
-	char *pc  = NULL;
-	int i=0;
+	struct Book *p;
 	
-	pc  = (char*)malloc(100*sizeof(char));
-	//100byte가 heap영역에 할당된다. 
-	//ㅣmalloc은 포인터변수가 필수 
-	
-	if(pc==NULL){
+	p= malloc(2*(sizeof(struct Book)));
+
+
+	if(p==NULL){
 		printf("메모리 할당 오류\n");
-		exit(1);
-	}
-	//error 핸들링 코드 
+		return ;
+	}	
+	p-> number=1;
+	strcpy(p->title,"C programming");
 	
-	for(i=0; i<26; i++){
-		pc [i]='a'+i;
+	p-> number=2;
+	strcpy((p+1)->title,"C programming");
 	
-	}
-	pc[i]=0;
-	printf("%s\n",pc);
-	free(pc);
-	//반납 
+	free(p);
+	return ;
+
 }
